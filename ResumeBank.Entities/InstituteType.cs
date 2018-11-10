@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ResumeBank.Entities
 {
-    public class Class1
+    public class InstituteType : Entity
     {
+        public string Name { get; set; }
     }
 }

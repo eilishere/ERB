@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ResumeBank.Repository
+namespace ResumeBank.Entities
 {
-    public class Class1
+    public class EducationLevel : Entity
     {
+        public string Name { get; set; }
     }
 }
