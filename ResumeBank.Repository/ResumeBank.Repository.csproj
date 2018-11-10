@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CandidateRepository.cs" />
+    <Compile Include="CategoryRepository.cs" />
+    <Compile Include="CategoryUnitOfWork.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Migrations\201811100707576_InitialDbModel.cs" />
     <Compile Include="Migrations\201811100707576_InitialDbModel.Designer.cs">
