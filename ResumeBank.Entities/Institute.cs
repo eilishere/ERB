@@ -9,6 +9,8 @@ namespace ResumeBank.Entities
     public class Institute : Entity
     {
         public string Name { get; set; }
+        public int? InstituteTypeId { get; set; }
+
         public virtual InstituteType InstituteType { get; set; }
     }
 }

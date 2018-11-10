@@ -31,7 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,10 +53,20 @@
     <Compile Include="Category.cs" />
     <Compile Include="EducationLevel.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="EntityConfigurations\CandidateConfiguration.cs" />
+    <Compile Include="EntityConfigurations\CategoryConfiguration.cs" />
+    <Compile Include="EntityConfigurations\EducationLevelConfiguration.cs" />
+    <Compile Include="EntityConfigurations\InstituteConfiguration.cs" />
+    <Compile Include="EntityConfigurations\InstituteTypeConfiguration.cs" />
+    <Compile Include="EntityConfigurations\SubjectConfiguration.cs" />
     <Compile Include="Institute.cs" />
     <Compile Include="InstituteType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Subject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

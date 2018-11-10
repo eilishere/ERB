@@ -9,6 +9,10 @@ namespace ResumeBank.Entities
     public class Category : Entity
     {
         public string Name { get; set; }
+
+        public int? ParentId { get; set; }
         public virtual Category ParentCategory { get; set; }
+
+        public virtual ICollection<Candidate> Candidates { get; set; }
     }
 }

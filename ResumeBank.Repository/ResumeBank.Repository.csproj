@@ -48,9 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRepository.cs" />
+    <Compile Include="Migrations\201811100707576_InitialDbModel.cs" />
+    <Compile Include="Migrations\201811100707576_InitialDbModel.Designer.cs">
+      <DependentUpon>201811100707576_InitialDbModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RBDbContext.cs" />
+    <Compile Include="Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -61,6 +67,11 @@
       <Project>{381d20ae-004c-4d65-9a25-c0e9f49614b3}</Project>
       <Name>ResumeBank.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201811100707576_InitialDbModel.resx">
+      <DependentUpon>201811100707576_InitialDbModel.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
