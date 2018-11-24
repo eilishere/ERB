@@ -15,7 +15,12 @@ namespace ResumeBank.Entities
         public DateTime? DateOfBirth { get; set; }
         public double? CurrentSalary { get; set; }
         public double? ExpectedSalary { get; set; }
+        public double? TotalExperience { get; set; }
+        public string Keywords { get; set; }
         public string Training { get; set; }
+
+        public int GenderId { get; set; }
+        public Gender Gender { get; set; }
 
         public int PrimaryCategoryId { get; set; }
         public virtual Category PrimaryCategory { get; set; }
@@ -30,6 +35,9 @@ namespace ResumeBank.Entities
 
         public int? InstituteId { get; set; }
         public virtual Institute Institute { get; set; }
+
+        public int? JobLevelId { get; set; }
+        public virtual JobLevel JobLevel { get; set; }
 
         public int? OriginalResumeId { get; set; }
         public virtual Attachment OriginalResume { get; set; }

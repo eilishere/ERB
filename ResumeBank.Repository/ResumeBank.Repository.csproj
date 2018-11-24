@@ -49,12 +49,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CandidateRepository.cs" />
+    <Compile Include="CandidateUnitOfWork.cs" />
     <Compile Include="CategoryRepository.cs" />
     <Compile Include="CategoryUnitOfWork.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Migrations\201811100707576_InitialDbModel.cs" />
     <Compile Include="Migrations\201811100707576_InitialDbModel.Designer.cs">
       <DependentUpon>201811100707576_InitialDbModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811240834103_AddGenderAndJobLevel.cs" />
+    <Compile Include="Migrations\201811240834103_AddGenderAndJobLevel.Designer.cs">
+      <DependentUpon>201811240834103_AddGenderAndJobLevel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811240851359_ChangeEntityConfigurationJobLevelAttachment.cs" />
+    <Compile Include="Migrations\201811240851359_ChangeEntityConfigurationJobLevelAttachment.Designer.cs">
+      <DependentUpon>201811240851359_ChangeEntityConfigurationJobLevelAttachment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811240914593_InitialDataEntryWithSeed.cs" />
+    <Compile Include="Migrations\201811240914593_InitialDataEntryWithSeed.Designer.cs">
+      <DependentUpon>201811240914593_InitialDataEntryWithSeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811241922175_UpdateCandidateExpAndKeyword.cs" />
+    <Compile Include="Migrations\201811241922175_UpdateCandidateExpAndKeyword.Designer.cs">
+      <DependentUpon>201811241922175_UpdateCandidateExpAndKeyword.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,6 +91,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201811100707576_InitialDbModel.resx">
       <DependentUpon>201811100707576_InitialDbModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811240834103_AddGenderAndJobLevel.resx">
+      <DependentUpon>201811240834103_AddGenderAndJobLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811240851359_ChangeEntityConfigurationJobLevelAttachment.resx">
+      <DependentUpon>201811240851359_ChangeEntityConfigurationJobLevelAttachment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811240914593_InitialDataEntryWithSeed.resx">
+      <DependentUpon>201811240914593_InitialDataEntryWithSeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811241922175_UpdateCandidateExpAndKeyword.resx">
+      <DependentUpon>201811241922175_UpdateCandidateExpAndKeyword.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -23,6 +23,10 @@ namespace ResumeBank.Entities.EntityConfigurations
                 .IsRequired()
                 .HasMaxLength(14);
 
+            HasRequired(c => c.Gender)
+                .WithMany()
+                .HasForeignKey(c => c.GenderId);
+
             HasRequired(c => c.PrimaryCategory)
                 .WithMany()
                 .HasForeignKey(c => c.PrimaryCategoryId);
@@ -47,6 +51,10 @@ namespace ResumeBank.Entities.EntityConfigurations
             HasOptional(c => c.Institute)
                 .WithMany()
                 .HasForeignKey(c => c.InstituteId);
+
+            HasOptional(c => c.JobLevel)
+                .WithMany()
+                .HasForeignKey(c => c.JobLevelId);
 
             HasOptional(c => c.OriginalResume)
                 .WithRequired(or => or.Candidate);
