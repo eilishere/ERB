@@ -198,6 +198,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CandidateModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2027,6 +2028,16 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ResumeBank.Entities\ResumeBank.Entities.csproj">
+      <Project>{381D20AE-004C-4D65-9A25-C0E9F49614B3}</Project>
+      <Name>ResumeBank.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ResumeBank.Services\ResumeBank.Services.csproj">
+      <Project>{A8D91C04-9EE8-4C37-A61B-3AD44138734F}</Project>
+      <Name>ResumeBank.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

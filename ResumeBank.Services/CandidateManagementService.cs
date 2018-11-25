@@ -19,6 +19,16 @@ namespace ResumeBank.Services
             _candidateUnitOfWork = new CandidateUnitOfWork(_rbDbContext);
         }
 
+        public IEnumerable<Candidate> GetAllCandidates()
+        {
+            return _candidateUnitOfWork.CandidateRepository.GetAll();
+        }
+
+        public Candidate GetCandidateById(int id)
+        {
+            return _candidateUnitOfWork.CandidateRepository.GetById(id);
+        }
+
         public bool AddCandidate(Candidate candidate)
         {
             try
