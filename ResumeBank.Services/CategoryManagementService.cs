@@ -19,6 +19,16 @@ namespace ResumeBank.Services
             _categoryUnitOfWork = new CategoryUnitOfWork(_rbDbContext);
         }
 
+        public IEnumerable<Category> GetAllCategories()
+        {
+            return _categoryUnitOfWork.CategoryRepository.GetAll();
+        }
+
+        public IEnumerable<Category> GetAllSubCategories(int id)
+        {
+            return _categoryUnitOfWork.CategoryRepository.GetAllSubCategories(id);
+        }
+
         public bool AddCategory(Category category)
         {
             try
@@ -32,6 +42,7 @@ namespace ResumeBank.Services
 
                 _categoryUnitOfWork.CategoryRepository.Add(newCategory);
                 _categoryUnitOfWork.Save();
+
                 return true;
             }
 
