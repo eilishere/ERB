@@ -48,11 +48,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttachmentRepository.cs" />
+    <Compile Include="AttachmentUnitOfWork.cs" />
     <Compile Include="CandidateRepository.cs" />
     <Compile Include="CandidateUnitOfWork.cs" />
     <Compile Include="CategoryRepository.cs" />
     <Compile Include="CategoryUnitOfWork.cs" />
+    <Compile Include="EducationLevelRepository.cs" />
+    <Compile Include="EducationLevelUnitOfWork.cs" />
+    <Compile Include="GenderRepository.cs" />
+    <Compile Include="GenderUnitOfWork.cs" />
+    <Compile Include="InstituteTypeRepository.cs" />
+    <Compile Include="InstituteRepository.cs" />
+    <Compile Include="InstituteTypeUnitOfWork.cs" />
+    <Compile Include="InstituteUnitOfWork.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="JobLevelRepository.cs" />
+    <Compile Include="JobLevelUnitOfWork.cs" />
     <Compile Include="Migrations\201811100707576_InitialDbModel.cs" />
     <Compile Include="Migrations\201811100707576_InitialDbModel.Designer.cs">
       <DependentUpon>201811100707576_InitialDbModel.cs</DependentUpon>
