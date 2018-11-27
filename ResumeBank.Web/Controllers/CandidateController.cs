@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResumeBank.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,7 +18,8 @@ namespace ResumeBank.Web.Controllers
         // Add new Candidate
         public ActionResult AddCandidate()
         {
-            return View();
+            var candidateModel = new CandidateModel();
+            return View(candidateModel);
         }
     }
 }

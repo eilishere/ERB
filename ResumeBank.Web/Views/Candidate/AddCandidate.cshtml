@@ -1,4 +1,4 @@
-﻿
+﻿@model ResumeBank.Web.Models.CandidateModel
 @{
     ViewBag.Title = "AddCandidate";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -24,91 +24,63 @@
         <form class="form-horizontal">
             <div class="box-body">
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+                    @Html.LabelFor(c=>c.Name, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Name">
+                        @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Email</label>
+                    @Html.LabelFor(c => c.Email, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-6">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="Email">
+                        @Html.TextBoxFor(c => c.Email, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Phone</label>
+                    @Html.LabelFor(c => c.Phone, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Phone">
+                        @Html.TextBoxFor(c => c.Phone, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Address</label>
+                    @Html.LabelFor(c => c.Address, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Address">
+                        @Html.TextBoxFor(c => c.Address, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Date Of Birth</label>
+                    @Html.LabelFor(c => c.DateOfBirth, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                        @Html.TextBoxFor(c => c.DateOfBirth, new { @class = "form-control", placeholder = "dd/mm/yyyy" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Category</label>
+                    @Html.LabelFor(c => c.PrimaryCategory, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-6">
-                        <select class="form-control">
-                            <option>== Select ==</option>
-                            <option>Information Techonology</option>
-                            <option>Accounting</option>
-                            <option>Markeing</option>
-                        </select>
+                        @Html.DropDownListFor(c => c.PrimaryCategoryId, new SelectList(Model.PrimaryCategories, "Id", "Name"), new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Sub-Category</label>
+                    @Html.LabelFor(c => c.SubCategories, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-6">
-                        <select class="form-control">
-                            <option>== Select ==</option>
-                            <option>Web Developer</option>
-                            <option>App Developer</option>
-                            <option>Device Programmer</option>
-                        </select>
+                        @Html.DropDownListFor(c => c.PrimaryCategoryId, new SelectList(Model.PrimaryCategories, "Id", "Name"), new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Educational Level</label>
+                    @Html.LabelFor(c => c.EducationLevel, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-6">
-                        <select class="form-control">
-                            <option>== Select ==</option>
-                            <option>Doctorate</option>
-                            <option>Masters</option>
-                            <option>Honors</option>
-                            <option>Degree</option>
-                            <option>Diploma</option>
-                        </select>
+                        @Html.DropDownListFor(c => c.EducationLevelId, new SelectList(Model.EducationLevels, "Id", "Name"), new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Subject</label>
+                    @Html.LabelFor(c => c.Subject, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-6">
-                        <select class="form-control">
-                            <option>== Select ==</option>
-                            <option>Computer Science</option>
-                            <option>Accounting</option>
-                            <option>Marketing</option>
-                        </select>
+                        @Html.DropDownListFor(c => c.SubjectId, new SelectList(Model.Subjects, "Id", "Name"), new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Institution</label>
+                    @Html.LabelFor(c => c.Institute, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-6">
-                        <select class="form-control">
-                            <option>== Select ==</option>
-                            <option>BUET</option>
-                            <option>Dhaka University</option>
-                            <option>North South University</option>
-                            <option>East West University</option>
-                        </select>
+                        @Html.DropDownListFor(c => c.InstituteId, new SelectList(Model.Institutes, "Id", "Name"), new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
@@ -124,33 +96,33 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Training</label>
+                    @Html.LabelFor(c => c.Training, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-6">
-                        <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                        @Html.TextAreaFor(c => c.Training, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Total Experience</label>
+                    @Html.LabelFor(c => c.TotalExperience, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Total Experience">
+                        @Html.TextBoxFor(c => c.TotalExperience, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Current Salary</label>
+                    @Html.LabelFor(c => c.CurrentSalary, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Current Salary">
+                        @Html.TextBoxFor(c => c.CurrentSalary, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Expected Salary</label>
+                    @Html.LabelFor(c => c.ExpectedSalary, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Expected Salary">
+                        @Html.TextBoxFor(c => c.ExpectedSalary, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Keywords</label>
+                    @Html.LabelFor(c => c.Keywords, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Keywords">
+                        @Html.TextBoxFor(c => c.Keywords, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">

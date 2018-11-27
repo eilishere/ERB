@@ -18,6 +18,13 @@ namespace ResumeBank.Web.Models
         private JobLevelManagementService _jobLevelManagementService;
         private SubjectManagementService _subjectManagementService;
 
+        public ICollection<Category> PrimaryCategories { get; set; }
+        public ICollection<EducationLevel> EducationLevels { get; set; }
+        public ICollection<Gender> Genders { get; set; }
+        public ICollection<Institute> Institutes { get; set; }
+        public ICollection<JobLevel> JobLevels { get; set; }
+        public ICollection<Subject> Subjects { get; set; }
+        
         public CandidateModel()
         {
             _candidateManagementService = new CandidateManagementService();
