@@ -89,6 +89,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RBDbContext.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="SubjectRepository.cs" />
+    <Compile Include="SubjectUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
