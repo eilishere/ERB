@@ -19,7 +19,7 @@ namespace ResumeBank.Services
             _educationLevelUnitOfWork = new EducationLevelUnitOfWork(_rbDbContext);
         }
 
-        public IEnumerable<EducationLevel> GetAllEducationLevel()
+        public ICollection<EducationLevel> GetAllEducationLevels()
         {
             return _educationLevelUnitOfWork.EducationLevelRepository.GetAll();
         }

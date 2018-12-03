@@ -35,6 +35,14 @@ namespace ResumeBank.Web.Models
             _instituteManagementService = new InstituteManagementService();
             _jobLevelManagementService = new JobLevelManagementService();
             _subjectManagementService = new SubjectManagementService();
+
+            PrimaryCategories = _categoryManagementService.GetAllCategories();
+            SubCategories = PrimaryCategories;
+            EducationLevels = _educationLevelManagementService.GetAllEducationLevels();
+            Genders = _genderManagementService.GetAllGenders();
+            Institutes = _instituteManagementService.GetAllInstitutes();
+            JobLevels = _jobLevelManagementService.GetAllJobLevels();
+            Subjects = _subjectManagementService.GetAllSubjects();
         }
 
         public CandidateModel(int? id) : this()

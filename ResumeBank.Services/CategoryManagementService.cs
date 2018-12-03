@@ -19,7 +19,7 @@ namespace ResumeBank.Services
             _categoryUnitOfWork = new CategoryUnitOfWork(_rbDbContext);
         }
 
-        public IEnumerable<Category> GetAllCategories()
+        public ICollection<Category> GetAllCategories()
         {
             return _categoryUnitOfWork.CategoryRepository.GetAll();
         }

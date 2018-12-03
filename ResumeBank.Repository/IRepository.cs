@@ -11,7 +11,7 @@ namespace ResumeBank.Repository
     {
         void Add(T item);
 
-        IEnumerable<T> GetAll();
+        ICollection<T> GetAll();
 
         T GetById(int id);
 

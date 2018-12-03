@@ -22,7 +22,7 @@ namespace ResumeBank.Repository
             _context.Set<T>().Add(item);
         }
 
-        public IEnumerable<T> GetAll()
+        public ICollection<T> GetAll()
         {
             return _context.Set<T>().ToList();
         }
