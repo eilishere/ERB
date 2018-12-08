@@ -13,7 +13,11 @@ namespace ResumeBank.Entities.EntityConfigurations
         {
             Property(a => a.OriginalName)
                 .IsRequired()
-                .HasMaxLength(255);            
+                .HasMaxLength(255);
+
+            Property(a => a.Url)
+                .IsRequired()
+                .HasMaxLength(255);
         }
     }
 }

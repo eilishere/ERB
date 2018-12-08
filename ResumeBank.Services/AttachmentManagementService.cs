@@ -19,7 +19,7 @@ namespace ResumeBank.Services
             _attachmentUnitOfWork = new AttachmentUnitOfWork(_rbDbContext);
         }
 
-        public IEnumerable<Attachment> GetAllGender()
+        public IEnumerable<Attachment> GetAllAttachment()
         {
             return _attachmentUnitOfWork.AttachmentRepository.GetAll();
         }
@@ -27,19 +27,19 @@ namespace ResumeBank.Services
         {
             try
             {
-                var newAttachment = new Attachment();
-
-                newAttachment.Id = attachment.Id;
-                newAttachment.Caption = attachment.Caption;
-                newAttachment.ImageUrl = attachment.ImageUrl;
-                newAttachment.OriginalName = attachment.OriginalName;
-                newAttachment.CurrentName = attachment.CurrentName;
+                var newAttachment = new Attachment
+                {
+                    Id = attachment.Id,
+                    Caption = attachment.Caption,
+                    Url = attachment.Url,
+                    OriginalName = attachment.OriginalName,
+                    CurrentName = attachment.CurrentName
+                };
 
                 _attachmentUnitOfWork.AttachmentRepository.Add(newAttachment);
                 _attachmentUnitOfWork.Save();
 
                 return true;
-
             }
             catch (Exception ex)
             {

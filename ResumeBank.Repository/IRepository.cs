@@ -10,6 +10,7 @@ namespace ResumeBank.Repository
     public interface IRepository<T> where T : Entity
     {
         void Add(T item);
+        void Update(T item);
 
         ICollection<T> GetAll();
 

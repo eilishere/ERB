@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<ResumeBank.Entities.Candidate>
+
 @{
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -138,44 +139,26 @@
                             <th>Institution</th>
                             <th>Expected Salary</th>
                             <th>Experience (yr)</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Rishad Wahid</td>
-                            <td>Information Technology</td>
-                            <td>University of Technolgy, Sydney</td>
-                            <td> 200,000</td>
-                            <td>10.5</td>
-                        </tr>
-                        <tr>
-                            <td>Renad Hakim</td>
-                            <td>Marketing</td>
-                            <td>North South University</td>
-                            <td> 300,000</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <td>Anisur Rahman</td>
-                            <td>Sales</td>
-                            <td>Dhaka University</td>
-                            <td> 500,000</td>
-                            <td>20</td>
-                        </tr>
-                        <tr>
-                            <td>Mukhtar Ali</td>
-                            <td>Information Technology</td>
-                            <td>BUET</td>
-                            <td> 50,000</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>Jaman Salek</td>
-                            <td>Accounting</td>
-                            <td>Dhaka University</td>
-                            <td> 20,000</td>
-                            <td>1</td>
-                        </tr>
+                        @foreach (var candidate in Model)
+                        {
+                            <tr>
+                                <td>@candidate.Name</td>
+                                <td>@candidate.PrimaryCategory.Name</td>
+                                <td>@candidate.Institute.Name</td>
+                                <td>@candidate.ExpectedSalary</td>
+                                <td>@candidate.TotalExperience</td>
+                                <td>
+                                    <a class="btn btn-success btn-sm"
+                                       href='@Url.Action("AddCandidate", "Candidate", new {id = candidate.Id})'>
+                                        <i class="fa fa-pencil fa-lg"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -186,7 +169,7 @@
                 <!-- /.box-footer -->
             <!-- /.box-body -->
         </div>
-    </div>s
+    </div>
 
     <!-- /.box -->
 </section>

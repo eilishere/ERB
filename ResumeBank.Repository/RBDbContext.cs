@@ -11,6 +11,11 @@ namespace ResumeBank.Repository
 {
     public class RBDbContext : DbContext 
     {
+        public RBDbContext()
+            : base("ERBDbConnection")
+        {
+
+        }
         public DbSet<Attachment> Attachments { get; set; }
         public DbSet<Candidate> Candidates { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -20,13 +25,10 @@ namespace ResumeBank.Repository
         public DbSet<Institute> Institutes { get; set; }
         public DbSet<JobLevel> JobLevels { get; set; }
         public DbSet<Subject> Subjects { get; set; }
+        public DbSet<CandidateSubCategory> CandidateSubCategories { get; set; }
 
 
-        public RBDbContext()
-            : base("ERBDbConnection")
-        {
-
-        }
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -38,6 +40,7 @@ namespace ResumeBank.Repository
             modelBuilder.Configurations.Add(new JobLevelConfiguration());
             modelBuilder.Configurations.Add(new CandidateConfiguration());
             modelBuilder.Configurations.Add(new SubjectConfiguration());
+            modelBuilder.Configurations.Add(new CandidateSubCategoryConfiguration());
 
         }
     }

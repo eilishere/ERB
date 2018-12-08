@@ -22,6 +22,11 @@ namespace ResumeBank.Repository
             _context.Set<T>().Add(item);
         }
 
+        public void Update(T item)
+        {
+            _context.Entry(item).State = EntityState.Modified;
+        }
+
         public ICollection<T> GetAll()
         {
             return _context.Set<T>().ToList();

@@ -31,14 +31,20 @@ namespace ResumeBank.Entities.EntityConfigurations
                 .WithMany()
                 .HasForeignKey(c => c.PrimaryCategoryId);
 
-            HasMany(c => c.SubCategories)
-                .WithMany(s => s.Candidates)
-                .Map(m =>
-                {
-                    m.ToTable("CandidateSubCategories");
-                    m.MapLeftKey("CandidateId");
-                    m.MapRightKey("SubCategoryId");                    
-                });
+            //HasMany(c => c.SubCategories)
+            //    .WithMany(s => s.Candidates)
+            //    .Map(m =>
+            //    {
+            //        m.ToTable("CandidateSubCategories");
+            //        m.MapLeftKey("CandidateId");
+            //        m.MapRightKey("SubCategoryId");                    
+            //    });
+
+            HasMany(c => c.CandidateSubCategories)
+                .WithRequired(c => c.Candidate)
+                .HasForeignKey(c => c.CandidateId)
+                .WillCascadeOnDelete(false);
+                
 
             HasOptional(c => c.EducationLevel)
                 .WithMany()
@@ -57,7 +63,12 @@ namespace ResumeBank.Entities.EntityConfigurations
                 .HasForeignKey(c => c.JobLevelId);
 
             HasOptional(c => c.OriginalResume)
-                .WithRequired(or => or.Candidate);
+                .WithMany()
+                .HasForeignKey(c => c.OriginalResumeId);
+
+            HasOptional(c => c.ModifiedResume)
+                .WithMany()
+                .HasForeignKey(c => c.ModifiedResumeId);
         }
     }
 }
