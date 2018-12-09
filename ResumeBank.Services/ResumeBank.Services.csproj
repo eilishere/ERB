@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AttachmentManagementService.cs" />
     <Compile Include="CandidateManagementService.cs" />
+    <Compile Include="CandidateSubCategoryService.cs" />
     <Compile Include="CategoryManagementService.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="EducationLevelManagementService.cs" />

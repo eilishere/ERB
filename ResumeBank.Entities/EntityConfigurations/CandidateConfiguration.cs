@@ -46,19 +46,19 @@ namespace ResumeBank.Entities.EntityConfigurations
                 .WillCascadeOnDelete(false);
                 
 
-            HasOptional(c => c.EducationLevel)
+            HasRequired(c => c.EducationLevel)
                 .WithMany()
                 .HasForeignKey(c => c.EducationLevelId);
 
-            HasOptional(c => c.Subject)
+            HasRequired(c => c.Subject)
                 .WithMany()
                 .HasForeignKey(c => c.SubjectId);
 
-            HasOptional(c => c.Institute)
+            HasRequired(c => c.Institute)
                 .WithMany()
                 .HasForeignKey(c => c.InstituteId);
 
-            HasOptional(c => c.JobLevel)
+            HasRequired(c => c.JobLevel)
                 .WithMany()
                 .HasForeignKey(c => c.JobLevelId);
 

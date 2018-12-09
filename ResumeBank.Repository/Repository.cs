@@ -22,9 +22,22 @@ namespace ResumeBank.Repository
             _context.Set<T>().Add(item);
         }
 
+        public void AddRange(ICollection<T> items)
+        {
+            _context.Set<T>().AddRange(items);
+        }
+
         public void Update(T item)
         {
             _context.Entry(item).State = EntityState.Modified;
+        }
+
+        public void UpdateRange(ICollection<T> items)
+        {
+            foreach (var item in items)
+            {
+                _context.Entry(item).State = EntityState.Modified;
+            }
         }
 
         public ICollection<T> GetAll()
@@ -44,9 +57,25 @@ namespace ResumeBank.Repository
             DeleteByItem(item);
         }
 
+        public void DeleteRangeById(ICollection<int> ids)
+        {
+            foreach (var id in ids)
+            {
+                DeleteById(id);
+            }
+        }
+
         public void DeleteByItem(T item)
         {
             item.Status = 0;
+        }
+
+        public void DeleteRangeByItem(ICollection<T> items)
+        {
+            foreach (var item in items)
+            {
+                DeleteByItem(item);
+            }
         }
 
         public void DeleteFromDatabaseById(int id)
@@ -58,6 +87,22 @@ namespace ResumeBank.Repository
         public void DeleteFromDatabaseByItem(T item)
         {
             _context.Set<T>().Remove(item);
-        }        
+        }
+
+        public void DeleteRangeFromDatabaseByIds(ICollection<int> ids)
+        {
+            foreach (var id in ids)
+            {
+                DeleteFromDatabaseById(id);
+            }
+        }
+
+        public void DeleteRangeFromDatabaseByItems(ICollection<T> items)
+        {
+            foreach (var item in items)
+            {
+                DeleteFromDatabaseByItem(item);
+            }
+        }
     }
 }

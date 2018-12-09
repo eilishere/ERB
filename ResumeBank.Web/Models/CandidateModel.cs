@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
+using System.Net;
 using ResumeBank.Entities;
 using ResumeBank.Services;
 using System;
@@ -79,9 +80,12 @@ namespace ResumeBank.Web.Models
                 SubjectId = existingCandidate.SubjectId;
                 InstituteId = existingCandidate.InstituteId;
                 JobLevelId = existingCandidate.JobLevelId;
+                OriginalResumeId = existingCandidate.OriginalResumeId;
+                ModifiedResumeId = existingCandidate.ModifiedResumeId;
                 OriginalResume = existingCandidate.OriginalResume;
                 ModifiedResume = existingCandidate.ModifiedResume;
                 SubCategorySelectedIds = CandidateSubCategories.Select(c => c.SubCategoryId).ToList();
+
             }
         }
 
@@ -112,22 +116,45 @@ namespace ResumeBank.Web.Models
 
         public void UpdateCandidate()
         {
-            //if (OriginalResumeFile != null && OriginalResumeFile.ContentLength > 0)
-            //{
-            //    if (OriginalResume == null)
-            //    {
-            //        OriginalResume = new Attachment()
-            //        {
-            //            OriginalName = Name,
-            //            Url = SaveResumeFile(OriginalResumeFile, Name + "_Orginal")
-            //        };
-            //    }
-            //    else
-            //    {
-            //        OriginalResume.OriginalName = Name;
-            //        OriginalResume.Url = SaveResumeFile(OriginalResumeFile, Name + "_Orginal");
-            //    }
-            //}
+            this.CandidateSubCategories = this.SubCategoryIdsToCandidateSubCategories();
+
+            if (OriginalResumeFile != null && OriginalResumeFile.ContentLength > 0)
+            {
+                if (OriginalResumeId == 0 || OriginalResumeId == null)
+                {
+                    OriginalResume = new Attachment()
+                    {
+                        OriginalName = Name,
+                        Url = SaveResumeFile(OriginalResumeFile, Name + "_Orginal")
+                    };
+                }
+                else
+                {
+                    OriginalResume = _attachmentManagementService.GetAttachmentById(OriginalResumeId);
+                    ExistingFileDelete(OriginalResume.Url);
+                    OriginalResume.OriginalName = Name;
+                    OriginalResume.Url = SaveResumeFile(OriginalResumeFile, Name + "_Orginal");
+                }
+            }
+
+            if (ModifiedResumeFile != null && ModifiedResumeFile.ContentLength > 0)
+            {
+                if (ModifiedResumeId == 0 || ModifiedResumeId == null)
+                {
+                    ModifiedResume = new Attachment()
+                    {
+                        OriginalName = Name,
+                        Url = SaveResumeFile(ModifiedResumeFile, Name + "_Modified")
+                    };
+                }
+                else
+                {
+                    ModifiedResume = _attachmentManagementService.GetAttachmentById(ModifiedResumeId);
+                    ExistingFileDelete(ModifiedResume.Url);
+                    ModifiedResume.OriginalName = Name;
+                    ModifiedResume.Url = SaveResumeFile(ModifiedResumeFile, Name + "_Modified");
+                }
+            }
 
             _candidateManagementService.UpdateCandidate(this);
         }
@@ -172,6 +199,24 @@ namespace ResumeBank.Web.Models
             }
 
             return url;
+        }
+
+        public bool ExistingFileDelete(string url)
+        {
+            if (File.Exists(HttpContext.Current.Server.MapPath(url)))
+            {
+                try
+                {
+                    File.Delete(HttpContext.Current.Server.MapPath(url));
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
+            }
+            return true;
         }
 
     }

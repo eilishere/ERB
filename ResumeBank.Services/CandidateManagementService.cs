@@ -14,11 +14,15 @@ namespace ResumeBank.Services
     {
         private RBDbContext _rbDbContext;
         private CandidateUnitOfWork _candidateUnitOfWork;
+        private AttachmentManagementService _attachmentManagementService;
+        private CandidateSubCategoryService _candidateSubCategoryService;
 
         public CandidateManagementService()
         {
             _rbDbContext = new RBDbContext();
             _candidateUnitOfWork = new CandidateUnitOfWork(_rbDbContext);
+            _attachmentManagementService = new AttachmentManagementService();
+            _candidateSubCategoryService = new CandidateSubCategoryService();
         }
 
         public IEnumerable<Candidate> GetAllCandidates()
@@ -96,14 +100,57 @@ namespace ResumeBank.Services
                     JobLevelId = candidate.JobLevelId,
                     TotalExperience = candidate.TotalExperience,
                     Keywords = candidate.Keywords,
+                    OriginalResumeId = candidate.OriginalResumeId,
+                    ModifiedResumeId = candidate.ModifiedResumeId,
                     OriginalResume = candidate.OriginalResume,
                     ModifiedResume = candidate.ModifiedResume
                 };
 
-                //if (updateCandidate.OriginalResume.Id != 0 && updateCandidate.OriginalResume.Id != null)
-                //{
-                    
-                //}
+                if (updateCandidate.OriginalResume != null)
+                {
+                    if (updateCandidate.OriginalResume.Id != 0 && updateCandidate.OriginalResume.Id != null)
+                    {
+                        _attachmentManagementService.UpdateAttachment(updateCandidate.OriginalResume);
+                    }
+                    else
+                    {
+                        _attachmentManagementService.AddAttachment(updateCandidate.OriginalResume);
+                        updateCandidate.OriginalResumeId = updateCandidate.OriginalResume.Id;
+                    }
+                    updateCandidate.OriginalResume = null;
+                }
+
+                if (updateCandidate.ModifiedResume != null)
+                {
+                    if (updateCandidate.ModifiedResume.Id != 0 && updateCandidate.ModifiedResume.Id != null)
+                    {
+                        _attachmentManagementService.UpdateAttachment(updateCandidate.ModifiedResume);
+                    }
+                    else
+                    {
+                        _attachmentManagementService.AddAttachment(updateCandidate.ModifiedResume);
+                        updateCandidate.ModifiedResumeId = updateCandidate.ModifiedResume.Id;
+                    }
+                    updateCandidate.ModifiedResume = null;
+                }
+
+                //List of Sub-Category update
+                List<CandidateSubCategory> previousSubCategories = _candidateSubCategoryService.GetAllCandidateSubCategoryByCandidateId(updateCandidate.Id).ToList();
+                List<CandidateSubCategory> currentSubCategories;
+                List<CandidateSubCategory> deletableSubCategories = previousSubCategories.ToList();
+                List<CandidateSubCategory> addableSubCategories;
+
+                if (updateCandidate.CandidateSubCategories != null)
+                {
+                    currentSubCategories = updateCandidate.CandidateSubCategories.ToList();
+                    deletableSubCategories = previousSubCategories.Except(currentSubCategories).ToList();
+                    addableSubCategories = currentSubCategories.Where(c => c.Id == 0).ToList();
+                    addableSubCategories.ForEach(c => { c.CandidateId = updateCandidate.Id; });
+                    _candidateSubCategoryService.AddRangeCandidateSubCategories(addableSubCategories);
+                }
+
+                _candidateSubCategoryService.DeleteRangeCandidateSubCategoriesFromDatabaseByItems(deletableSubCategories);
+                updateCandidate.CandidateSubCategories = null;
 
                 _candidateUnitOfWork.CandidateRepository.Update(updateCandidate);
                 _candidateUnitOfWork.Save();

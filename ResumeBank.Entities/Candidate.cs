@@ -42,18 +42,22 @@ namespace ResumeBank.Entities
         [Display(Name = "Sub-Category")]
         public virtual ICollection<CandidateSubCategory> CandidateSubCategories { get; set; }
 
+        [Required]
         [Display(Name = "Education Level")]
         public int? EducationLevelId { get; set; }
         public virtual EducationLevel EducationLevel { get; set; }
 
+        [Required]
         [Display(Name = "Subject")]
         public int? SubjectId { get; set; }
         public virtual Subject Subject { get; set; }
 
+        [Required]
         [Display(Name = "Institute")]
         public int? InstituteId { get; set; }
         public virtual Institute Institute { get; set; }
 
+        [Required]
         [Display(Name = "Job Level")]
         public int? JobLevelId { get; set; }
         public virtual JobLevel JobLevel { get; set; }

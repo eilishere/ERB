@@ -51,6 +51,8 @@
     <Compile Include="AttachmentRepository.cs" />
     <Compile Include="AttachmentUnitOfWork.cs" />
     <Compile Include="CandidateRepository.cs" />
+    <Compile Include="CandidateSubCategoryRepository.cs" />
+    <Compile Include="CandidateSubCategoryUnitOfWork.cs" />
     <Compile Include="CandidateUnitOfWork.cs" />
     <Compile Include="CategoryRepository.cs" />
     <Compile Include="CategoryUnitOfWork.cs" />
