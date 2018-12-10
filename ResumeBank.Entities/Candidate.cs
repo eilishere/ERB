@@ -18,7 +18,7 @@ namespace ResumeBank.Entities
         public string Address { get; set; }
         [Display(Name = "Date Of Birth")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? DateOfBirth { get; set; }
         [Display(Name = "Current Salary")]
         public double? CurrentSalary { get; set; }

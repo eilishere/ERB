@@ -70,7 +70,7 @@
                     <div class="form-group">
                         @Html.LabelFor(c => c.DateOfBirth, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-6">
-                            @Html.TextBoxFor(c => c.DateOfBirth,"{0:dd/MM/yyyy}", new { @class = "form-control", @placeholder = "dd/mm/yyyy" })
+                            @Html.TextBoxFor(c => c.DateOfBirth, "{0:MM/dd/yyyy}", new { @class = "form-control datemask", @placeholder = "mm/dd/yyyy" })
                             @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
                         </div>
                     </div>
