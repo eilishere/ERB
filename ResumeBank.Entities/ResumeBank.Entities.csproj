@@ -50,11 +50,13 @@
   <ItemGroup>
     <Compile Include="Attachment.cs" />
     <Compile Include="Candidate.cs" />
+    <Compile Include="CandidateSubCategory.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="EducationLevel.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="EntityConfigurations\AttachmentConfiguration.cs" />
     <Compile Include="EntityConfigurations\CandidateConfiguration.cs" />
+    <Compile Include="EntityConfigurations\CandidateSubCategoryConfiguration.cs" />
     <Compile Include="EntityConfigurations\CategoryConfiguration.cs" />
     <Compile Include="EntityConfigurations\EducationLevelConfiguration.cs" />
     <Compile Include="EntityConfigurations\InstituteConfiguration.cs" />

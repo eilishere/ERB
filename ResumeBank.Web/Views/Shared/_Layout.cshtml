@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="~/Content/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="~/Plugins/Ionicons/css/ionicons.min.css">
+    <!--multi select dropdown-->
+    <link href="~/Content/select2.min.css" rel="stylesheet" />
     <!-- Theme style -->
     <link rel="stylesheet" href="~/Content/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -33,7 +35,7 @@
             <nav class="navbar navbar-static-top">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="../../index2.html" class="navbar-brand"><b>RESUME</b>Bank</a>
+                        <a href="#" class="navbar-brand"><b>RESUME</b>Bank</a>
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                             <i class="fa fa-bars"></i>
                         </button>
@@ -41,8 +43,8 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="/Home/Index">Candidates <span class="sr-only">(current)</span></a></li>
-                            <li><a href="/Home/Search">Search</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "AddCandidate" ? "active" : "")">@Html.ActionLink("Candidate","AddCandidate","Candidate")</li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Search" ? "active" : "")">@Html.ActionLink("Search", "Search", "Candidate")</li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
@@ -227,8 +229,7 @@
                 <div class="pull-right hidden-xs">
                     <b>Version</b> 1.0.0
                 </div>
-                <strong>Copyright &copy; 208 <a href="https://adminlte.io">Encoders Infotech</a>.</strong> All rights
-                reserved.
+                <strong>Copyright &copy; 208 <a href="#">Encoders Infotech</a>.</strong> All rights reserved.
             </div>
             <!-- /.container -->
         </footer>
@@ -238,6 +239,8 @@
     <script src="~/Plugins/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap 3.3.7 -->
     <script src="~/Plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--multi select dropdown-->
+    <script src="~/Scripts/select2.full.min.js"></script>
     <!-- SlimScroll -->
     <script src="~/Plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
@@ -251,11 +254,15 @@
     <script src="~/Plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
     <script src="~/Plugins/input-mask/jquery.inputmask.extensions.js"></script>
     <script>
-    $(function () {
-        //Datemask dd/mm/yyyy
-        $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-        $('[data-mask]').inputmask()
-    })
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+            //Datemask dd/mm/yyyy
+            $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+            $('[data-mask]').inputmask()
+        })
     </script>
+    
+    @RenderSection("scripts", required: false)
 </body >
 </html >

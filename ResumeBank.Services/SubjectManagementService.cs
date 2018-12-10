@@ -19,7 +19,7 @@ namespace ResumeBank.Services
             _subjectUnitOfWork = new SubjectUnitOfWork(_rbDbContext);
         }
 
-        public IEnumerable<Subject> GetAllSubject()
+        public ICollection<Subject> GetAllSubjects()
         {
             return _subjectUnitOfWork.SubjectRepository.GetAll();
         }

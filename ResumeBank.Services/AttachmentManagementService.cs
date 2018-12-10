@@ -19,27 +19,58 @@ namespace ResumeBank.Services
             _attachmentUnitOfWork = new AttachmentUnitOfWork(_rbDbContext);
         }
 
-        public IEnumerable<Attachment> GetAllGender()
+        public IEnumerable<Attachment> GetAllAttachment()
         {
             return _attachmentUnitOfWork.AttachmentRepository.GetAll();
+        }
+
+        public Attachment GetAttachmentById(int? id)
+        {
+            var newId = id != null ? (int)id : 0;
+            return _attachmentUnitOfWork.AttachmentRepository.GetById(newId);
         }
         public bool AddAttachment(Attachment attachment)
         {
             try
             {
-                var newAttachment = new Attachment();
+                //var newAttachment = new Attachment
+                //{
+                //    Id = attachment.Id,
+                //    Caption = attachment.Caption,
+                //    Url = attachment.Url,
+                //    OriginalName = attachment.OriginalName,
+                //    CurrentName = attachment.CurrentName
+                //};
 
-                newAttachment.Id = attachment.Id;
-                newAttachment.Caption = attachment.Caption;
-                newAttachment.ImageUrl = attachment.ImageUrl;
-                newAttachment.OriginalName = attachment.OriginalName;
-                newAttachment.CurrentName = attachment.CurrentName;
-
-                _attachmentUnitOfWork.AttachmentRepository.Add(newAttachment);
+                _attachmentUnitOfWork.AttachmentRepository.Add(attachment);
                 _attachmentUnitOfWork.Save();
 
                 return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
 
+        public bool UpdateAttachment(Attachment attachment)
+        {
+            try
+            {
+                //var updateAttachment = new Attachment
+                //{
+                //    Id = attachment.Id,
+                //    Caption = attachment.Caption,
+                //    Url = attachment.Url,
+                //    OriginalName = attachment.OriginalName,
+                //    CurrentName = attachment.CurrentName
+                //};
+
+                _attachmentUnitOfWork.AttachmentRepository.Update(attachment);
+                _attachmentUnitOfWork.Save();
+
+                return true;
             }
             catch (Exception ex)
             {

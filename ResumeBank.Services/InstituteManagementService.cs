@@ -19,7 +19,7 @@ namespace ResumeBank.Services
             _instituteUnitOfWork = new InstituteUnitOfWork(_rbDbContext);
         }
 
-        public IEnumerable<Institute> GetAllInstitute()
+        public ICollection<Institute> GetAllInstitutes()
         {
             return _instituteUnitOfWork.InstituteRepository.GetAll();
         }

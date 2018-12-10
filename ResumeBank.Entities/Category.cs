@@ -12,7 +12,5 @@ namespace ResumeBank.Entities
 
         public int? ParentId { get; set; }
         public virtual Category ParentCategory { get; set; }
-
-        public virtual ICollection<Candidate> Candidates { get; set; }
     }
 }

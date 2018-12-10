@@ -31,33 +31,44 @@ namespace ResumeBank.Entities.EntityConfigurations
                 .WithMany()
                 .HasForeignKey(c => c.PrimaryCategoryId);
 
-            HasMany(c => c.SubCategories)
-                .WithMany(s => s.Candidates)
-                .Map(m =>
-                {
-                    m.ToTable("CandidateSubCategories");
-                    m.MapLeftKey("CandidateId");
-                    m.MapRightKey("SubCategoryId");                    
-                });
+            //HasMany(c => c.SubCategories)
+            //    .WithMany(s => s.Candidates)
+            //    .Map(m =>
+            //    {
+            //        m.ToTable("CandidateSubCategories");
+            //        m.MapLeftKey("CandidateId");
+            //        m.MapRightKey("SubCategoryId");                    
+            //    });
 
-            HasOptional(c => c.EducationLevel)
+            HasMany(c => c.CandidateSubCategories)
+                .WithRequired(c => c.Candidate)
+                .HasForeignKey(c => c.CandidateId)
+                .WillCascadeOnDelete(false);
+                
+
+            HasRequired(c => c.EducationLevel)
                 .WithMany()
                 .HasForeignKey(c => c.EducationLevelId);
 
-            HasOptional(c => c.Subject)
+            HasRequired(c => c.Subject)
                 .WithMany()
                 .HasForeignKey(c => c.SubjectId);
 
-            HasOptional(c => c.Institute)
+            HasRequired(c => c.Institute)
                 .WithMany()
                 .HasForeignKey(c => c.InstituteId);
 
-            HasOptional(c => c.JobLevel)
+            HasRequired(c => c.JobLevel)
                 .WithMany()
                 .HasForeignKey(c => c.JobLevelId);
 
             HasOptional(c => c.OriginalResume)
-                .WithRequired(or => or.Candidate);
+                .WithMany()
+                .HasForeignKey(c => c.OriginalResumeId);
+
+            HasOptional(c => c.ModifiedResume)
+                .WithMany()
+                .HasForeignKey(c => c.ModifiedResumeId);
         }
     }
 }

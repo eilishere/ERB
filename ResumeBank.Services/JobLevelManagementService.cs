@@ -19,7 +19,7 @@ namespace ResumeBank.Services
             _jobLevelUnitOfWork = new JobLevelUnitOfWork(_rbDbContext);
         }
 
-        public IEnumerable<JobLevel> GetAllGender()
+        public ICollection<JobLevel> GetAllJobLevels()
         {
             return _jobLevelUnitOfWork.JobLevelRepository.GetAll();
         }

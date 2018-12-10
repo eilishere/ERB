@@ -19,7 +19,7 @@ namespace ResumeBank.Services
             _genderUnitOfWork = new GenderUnitOfWork(_rbDbContext);
         }
 
-        public IEnumerable<Gender> GetAllGender()
+        public ICollection<Gender> GetAllGenders()
         {
             return _genderUnitOfWork.GenderRepository.GetAll();
         }

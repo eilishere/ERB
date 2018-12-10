@@ -51,6 +51,8 @@
     <Compile Include="AttachmentRepository.cs" />
     <Compile Include="AttachmentUnitOfWork.cs" />
     <Compile Include="CandidateRepository.cs" />
+    <Compile Include="CandidateSubCategoryRepository.cs" />
+    <Compile Include="CandidateSubCategoryUnitOfWork.cs" />
     <Compile Include="CandidateUnitOfWork.cs" />
     <Compile Include="CategoryRepository.cs" />
     <Compile Include="CategoryUnitOfWork.cs" />
@@ -85,6 +87,42 @@
     <Compile Include="Migrations\201811241922175_UpdateCandidateExpAndKeyword.Designer.cs">
       <DependentUpon>201811241922175_UpdateCandidateExpAndKeyword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812050953354_remove attachment candidate.cs" />
+    <Compile Include="Migrations\201812050953354_remove attachment candidate.Designer.cs">
+      <DependentUpon>201812050953354_remove attachment candidate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812060541470_change candidate-sub-category entity.cs" />
+    <Compile Include="Migrations\201812060541470_change candidate-sub-category entity.Designer.cs">
+      <DependentUpon>201812060541470_change candidate-sub-category entity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812060550054_added candidate-sub-category entity.cs" />
+    <Compile Include="Migrations\201812060550054_added candidate-sub-category entity.Designer.cs">
+      <DependentUpon>201812060550054_added candidate-sub-category entity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812060651202_candidate-sub-category foreign key added.cs" />
+    <Compile Include="Migrations\201812060651202_candidate-sub-category foreign key added.Designer.cs">
+      <DependentUpon>201812060651202_candidate-sub-category foreign key added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812061120072_DeleteTableAttachement.cs" />
+    <Compile Include="Migrations\201812061120072_DeleteTableAttachement.Designer.cs">
+      <DependentUpon>201812061120072_DeleteTableAttachement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812061122346_AddTableAttachement.cs" />
+    <Compile Include="Migrations\201812061122346_AddTableAttachement.Designer.cs">
+      <DependentUpon>201812061122346_AddTableAttachement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812061153278_AddCandidateAttachmentForeignKey.cs" />
+    <Compile Include="Migrations\201812061153278_AddCandidateAttachmentForeignKey.Designer.cs">
+      <DependentUpon>201812061153278_AddCandidateAttachmentForeignKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812080413484_RemoveCategoryCandidatesProperty.cs" />
+    <Compile Include="Migrations\201812080413484_RemoveCategoryCandidatesProperty.Designer.cs">
+      <DependentUpon>201812080413484_RemoveCategoryCandidatesProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812091027028_CandidateRequiredProperty.cs" />
+    <Compile Include="Migrations\201812091027028_CandidateRequiredProperty.Designer.cs">
+      <DependentUpon>201812091027028_CandidateRequiredProperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RBDbContext.cs" />
@@ -117,6 +155,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811241922175_UpdateCandidateExpAndKeyword.resx">
       <DependentUpon>201811241922175_UpdateCandidateExpAndKeyword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812050953354_remove attachment candidate.resx">
+      <DependentUpon>201812050953354_remove attachment candidate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812060541470_change candidate-sub-category entity.resx">
+      <DependentUpon>201812060541470_change candidate-sub-category entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812060550054_added candidate-sub-category entity.resx">
+      <DependentUpon>201812060550054_added candidate-sub-category entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812060651202_candidate-sub-category foreign key added.resx">
+      <DependentUpon>201812060651202_candidate-sub-category foreign key added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812061120072_DeleteTableAttachement.resx">
+      <DependentUpon>201812061120072_DeleteTableAttachement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812061122346_AddTableAttachement.resx">
+      <DependentUpon>201812061122346_AddTableAttachement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812061153278_AddCandidateAttachmentForeignKey.resx">
+      <DependentUpon>201812061153278_AddCandidateAttachmentForeignKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812080413484_RemoveCategoryCandidatesProperty.resx">
+      <DependentUpon>201812080413484_RemoveCategoryCandidatesProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812091027028_CandidateRequiredProperty.resx">
+      <DependentUpon>201812091027028_CandidateRequiredProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

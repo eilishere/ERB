@@ -9,10 +9,9 @@ namespace ResumeBank.Entities
     public class Attachment : Entity
     {
         public string Caption { get; set; }
-        public string ImageUrl { get; set; }
+        public string Url { get; set; }
         public string OriginalName { get; set; }
-        public string CurrentName { get; set; }    
-       
-        public Candidate Candidate { get; set; }
+        public string CurrentName { get; set; }
+
     }
 }
