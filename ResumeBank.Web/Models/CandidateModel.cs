@@ -159,6 +159,11 @@ namespace ResumeBank.Web.Models
             _candidateManagementService.UpdateCandidate(this);
         }
 
+        public bool DeleteCandidateById(int id)
+        {
+            return _candidateManagementService.DeleteCandidateById(id);
+        }
+
         public IEnumerable<Candidate> GetAllCandidates()
         {
             return _candidateManagementService.GetAllCandidates();

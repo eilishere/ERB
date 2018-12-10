@@ -43,8 +43,8 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="/Candidate/AddCandidate">Candidate<span class="sr-only">(current)</span></a></li>
-                            <li><a href="/Candidate/Search">Search</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "AddCandidate" ? "active" : "")">@Html.ActionLink("Candidate","AddCandidate","Candidate")</li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Search" ? "active" : "")">@Html.ActionLink("Search", "Search", "Candidate")</li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
@@ -255,12 +255,14 @@
     <script src="~/Plugins/input-mask/jquery.inputmask.extensions.js"></script>
     <script>
         $(function () {
-        //Initialize Select2 Elements
-        $('.select2').select2()
-        //Datemask dd/mm/yyyy
-        $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-        $('[data-mask]').inputmask()
-    })
+            //Initialize Select2 Elements
+            $('.select2').select2()
+            //Datemask dd/mm/yyyy
+            $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+            $('[data-mask]').inputmask()
+        })
     </script>
+    
+    @RenderSection("scripts", required: false)
 </body >
 </html >

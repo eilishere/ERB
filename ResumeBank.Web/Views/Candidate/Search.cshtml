@@ -1,176 +1,211 @@
 ﻿@model IEnumerable<ResumeBank.Entities.Candidate>
 
-@{
-    ViewBag.Title = "Search";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    @{
+        ViewBag.Title = "Search";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>
-        Candidate Search
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Candidate</a></li>
-        <li class="active">Search</li>
-    </ol>
-</section>
-<!-- Main content -->
-<section class="content">
-    <div class="col-sm-3">
-        <div class="box box-default">
-            <div class="box-header with-border">
-                <h3 class="box-title">Search Criteria</h3>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Candidate Search
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Candidate</a></li>
+            <li class="active">Search</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="col-sm-3">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Search Criteria</h3>
+                </div>
+                <form class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Keyword">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <select class="form-control">
+                                    <option>== Category ==</option>
+                                    <option>Information Techonology</option>
+                                    <option>Accounting</option>
+                                    <option>Markeing</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <select class="form-control">
+                                    <option>== Sub Category ==</option>
+                                    <option>Web Developer</option>
+                                    <option>App Developer</option>
+                                    <option>Device Programmer</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <select class="form-control">
+                                    <option>== Education Level ==</option>
+                                    <option>Doctorate</option>
+                                    <option>Masters</option>
+                                    <option>Honors</option>
+                                    <option>Degree</option>
+                                    <option>Diploma</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <select class="form-control">
+                                    <option>== Subject ==</option>
+                                    <option>Computer Science</option>
+                                    <option>Accounting</option>
+                                    <option>Marketing</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <select class="form-control">
+                                    <option>== Institution ==</option>
+                                    <option>BUET</option>
+                                    <option>Dhaka University</option>
+                                    <option>North South University</option>
+                                    <option>East West University</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <select class="form-control">
+                                    <option>== Institution Type ==</option>
+                                    <option>Public</option>
+                                    <option>Private</option>
+                                    <option>Foreign</option>
+                                    <option>N/A</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Training">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Experience">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Current Salary">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Expected Salary">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+                <!-- /.box-body -->
             </div>
-            <form class="form-horizontal">
+        </div>
+
+        <div class="col-sm-9">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Results</h3>
+                </div>
                 <div class="box-body">
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Keyword">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <select class="form-control">
-                                <option>== Category ==</option>
-                                <option>Information Techonology</option>
-                                <option>Accounting</option>
-                                <option>Markeing</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <select class="form-control">
-                                <option>== Sub Category ==</option>
-                                <option>Web Developer</option>
-                                <option>App Developer</option>
-                                <option>Device Programmer</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <select class="form-control">
-                                <option>== Education Level ==</option>
-                                <option>Doctorate</option>
-                                <option>Masters</option>
-                                <option>Honors</option>
-                                <option>Degree</option>
-                                <option>Diploma</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <select class="form-control">
-                                <option>== Subject ==</option>
-                                <option>Computer Science</option>
-                                <option>Accounting</option>
-                                <option>Marketing</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <select class="form-control">
-                                <option>== Institution ==</option>
-                                <option>BUET</option>
-                                <option>Dhaka University</option>
-                                <option>North South University</option>
-                                <option>East West University</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <select class="form-control">
-                                <option>== Institution Type ==</option>
-                                <option>Public</option>
-                                <option>Private</option>
-                                <option>Foreign</option>
-                                <option>N/A</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Training">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Experience">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Current Salary">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Expected Salary">
-                        </div>
-                    </div>
-                </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-                    
-                </div>
-                <!-- /.box-footer -->
-            </form>
-            <!-- /.box-body -->
-        </div>
-    </div>
-
-    <div class="col-sm-9">
-        <div class="box box-default">
-            <div class="box-header with-border">
-                <h3 class="box-title">Results</h3>
-            </div>            
-            <div class="box-body">
-                <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Institution</th>
-                            <th>Expected Salary</th>
-                            <th>Experience (yr)</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var candidate in Model)
-                        {
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
                             <tr>
-                                <td>@candidate.Name</td>
-                                <td>@candidate.PrimaryCategory.Name</td>
-                                <td>@candidate.Institute.Name</td>
-                                <td>@candidate.ExpectedSalary</td>
-                                <td>@candidate.TotalExperience</td>
-                                <td>
-                                    <a class="btn btn-success btn-sm"
-                                       href='@Url.Action("AddCandidate", "Candidate", new {id = candidate.Id})'>
-                                        <i class="fa fa-pencil fa-lg"></i>
-                                    </a>
-                                </td>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Institution</th>
+                                <th>Expected Salary</th>
+                                <th>Experience (yr)</th>
+                                <th>Action</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            @foreach (var candidate in Model)
+                            {
+                                <tr>
+                                    <td>@candidate.Name</td>
+                                    <td>@candidate.PrimaryCategory.Name</td>
+                                    <td>@candidate.Institute.Name</td>
+                                    <td>@candidate.ExpectedSalary</td>
+                                    <td>@candidate.TotalExperience</td>
+                                    <td>
+                                        <a class="btn btn-success btn-sm"
+                                           href='@Url.Action("AddCandidate", "Candidate", new {id = candidate.Id})'>
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm"
+                                           href='' onclick="ConfirmDeleteCandidate(@candidate.Id)" data-toggle="modal">
+                                            <i class="fa fa-remove"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                   
+
                 </div>
                 <!-- /.box-footer -->
-            <!-- /.box-body -->
+                <!-- /.box-body -->
+            </div>
         </div>
+
+        <!-- /.box -->
+    </section>
+<!-- /.content -->
+    
+    
+
+<!-- Start Delete Modal -->
+    <div class="modal fade" id="confirmDeleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Confirmation Modal</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Are you sure want to delete this Candidate ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="DeleteCandidate()">Confirm</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div>
 
-    <!-- /.box -->
-</section>
-<!-- /.content -->
+    <input type="hidden" id="hiddenCandidateId" />
+
+@section scripts{
+        <script src="~/Scripts/Project/candidate.js"></script>
+}

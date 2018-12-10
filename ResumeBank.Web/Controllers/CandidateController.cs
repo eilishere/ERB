@@ -61,6 +61,11 @@ namespace ResumeBank.Web.Controllers
             return View(_candidateModel.GetAllCandidates());
         }
 
+        public ActionResult DeleteCandidate(int id)
+        {
+            var isDeleted = _candidateModel.DeleteCandidateById(id);
 
+            return Json(isDeleted, JsonRequestBehavior.AllowGet);
+        }
     }
 }

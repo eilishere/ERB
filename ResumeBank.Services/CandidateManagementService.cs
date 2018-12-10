@@ -27,7 +27,7 @@ namespace ResumeBank.Services
 
         public IEnumerable<Candidate> GetAllCandidates()
         {
-            return _candidateUnitOfWork.CandidateRepository.GetAll();
+            return _candidateUnitOfWork.CandidateRepository.GetAll().Where(c => c.Status == 1);
         }
 
         public Candidate GetCandidateById(int id)
@@ -162,6 +162,23 @@ namespace ResumeBank.Services
                 Console.WriteLine(ex.Message);
                 return false;
             }
+        }
+
+        public bool DeleteCandidateById(int id)
+        {
+            try
+            {
+                _candidateUnitOfWork.CandidateRepository.DeleteById(id);
+                _candidateUnitOfWork.Save();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+
+            return true;
         }
     }
 }
