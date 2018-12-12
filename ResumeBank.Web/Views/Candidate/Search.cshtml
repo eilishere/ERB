@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ResumeBank.Entities.Candidate>
+﻿@model ResumeBank.Web.Models.CandidateModel
 
     @{
         ViewBag.Title = "Search";
@@ -18,114 +18,89 @@
     </section>
     <!-- Main content -->
     <section class="content">
-        <div class="col-sm-3">
+        <div class="col-sm-12">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <h3 class="box-title">Search Criteria</h3>
                 </div>
-                <form class="form-horizontal">
-                    <div class="box-body">
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Keyword">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <select class="form-control">
-                                    <option>== Category ==</option>
-                                    <option>Information Techonology</option>
-                                    <option>Accounting</option>
-                                    <option>Markeing</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <select class="form-control">
-                                    <option>== Sub Category ==</option>
-                                    <option>Web Developer</option>
-                                    <option>App Developer</option>
-                                    <option>Device Programmer</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <select class="form-control">
-                                    <option>== Education Level ==</option>
-                                    <option>Doctorate</option>
-                                    <option>Masters</option>
-                                    <option>Honors</option>
-                                    <option>Degree</option>
-                                    <option>Diploma</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <select class="form-control">
-                                    <option>== Subject ==</option>
-                                    <option>Computer Science</option>
-                                    <option>Accounting</option>
-                                    <option>Marketing</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <select class="form-control">
-                                    <option>== Institution ==</option>
-                                    <option>BUET</option>
-                                    <option>Dhaka University</option>
-                                    <option>North South University</option>
-                                    <option>East West University</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <select class="form-control">
-                                    <option>== Institution Type ==</option>
-                                    <option>Public</option>
-                                    <option>Private</option>
-                                    <option>Foreign</option>
-                                    <option>N/A</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Training">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Experience">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Current Salary">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Expected Salary">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer">
+                @using (Html.BeginForm("Search", "Candidate", FormMethod.Post))
+                      {
+                          @Html.AntiForgeryToken()
+                          <div class="form-horizontal">
+                              <div class="box-body">
+                                  <div class="form-group col-sm-3">
+                                      <div class="col-sm-12">                                       
+                                          @Html.TextBoxFor(c => c.Keywords, new { @class = "form-control", @placeholder="Keyword" })
+                                      </div>
+                                  </div>
+                                  <div class="form-group col-sm-3">
+                                      <div class="col-sm-12">
+                                          @Html.DropDownListFor(c => c.PrimaryCategoryId, new SelectList(Model.PrimaryCategories, "Id", "Name"), "---Select Category---", new { @class = "form-control", @id = "primaryCategorySearchId" })
+                                      </div>
+                                  </div>
+                                  <div class="form-group col-sm-3">
+                                      <div class="col-sm-12">
+                                          @Html.DropDownListFor(c => c.SubCategoryId, new SelectList(Model.SubCategories, "Id", "Name"), "---Select Sub-Category---", new { @class = "form-control", @id = "subCategorySearchId", @disabled = true })
+                                      </div>
+                                  </div>
+                                  <div class="form-group col-sm-3">
+                                      <div class="col-sm-12">
+                                          @Html.DropDownListFor(c => c.EducationLevelId, new SelectList(Model.EducationLevels, "Id", "Name"), "---Select Education Level---", new { @class = "form-control" })
+                                      </div>
+                                  </div>
+                                  <div class="form-group col-sm-3">
+                                      <div class="col-sm-12">
+                                          @Html.DropDownListFor(c => c.SubjectId, new SelectList(Model.Subjects, "Id", "Name"), "---Select Subject---", new { @class = "form-control" })
+                                      </div>
+                                  </div>
+                                  <div class="form-group col-sm-3">
+                                      <div class="col-sm-12">
+                                          @Html.DropDownListFor(c => c.InstituteId, new SelectList(Model.Institutes, "Id", "Name"), "---Select Institute---", new { @class = "form-control" })
+                                      </div>
+                                  </div>
+                                  <div class="form-group col-sm-3">
+                                      <div class="col-sm-12">
+                                          @Html.DropDownListFor(c => c.JobLevelId, new SelectList(Model.JobLevels, "Id", "Name"), "---Select Job Level---", new { @class = "form-control" })
+                                      </div>
+                                  </div>
+                                  <div class="form-group col-sm-3">
+                                      <div class="col-sm-12">                                        
+                                          @Html.TextBoxFor(c => c.Training, new { @class = "form-control", @placeholder = "Training" })
+                                      </div>
+                                  </div>
+                                  <div class="form-group col-sm-3">
+                                      <div class="col-sm-12">
+                                          @Html.TextBoxFor(c => c.TotalExperience, new { @class = "form-control", @placeholder = "Total Experience" })
+                                      </div>
+                                  </div>
+                                  <div class="form-group col-sm-3">
+                                      <div class="col-sm-12">
+                                          @Html.TextBoxFor(c => c.CurrentSalary, new { @class = "form-control", @placeholder = "Current Salary" })
+                                      </div>
+                                  </div>
+                                  <div class="form-group col-sm-3">
+                                      <div class="col-sm-12">
+                                          @Html.TextBoxFor(c => c.ExpectedSalary, new { @class = "form-control", @placeholder = "Expected Salary" })
+                                      </div>
+                                  </div>
+                                  <div class="form-group col-sm-3">
+                                      <div class="col-sm-12">
+                                          <button type="submit" class="btn btn-info btn-block">Search</button>
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- /.box-body -->
+                              <div class="box-footer">
 
-                    </div>
-                    <!-- /.box-footer -->
-                </form>
+                              </div>
+                              <!-- /.box-footer -->
+                          </div>
+                      }
                 <!-- /.box-body -->
             </div>
         </div>
 
-        <div class="col-sm-9">
+        <div class="col-sm-12">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <h3 class="box-title">Results</h3>
@@ -143,12 +118,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var candidate in Model)
-                            {
+                            @foreach (var candidate in Model.Candidates)
+                            {   
+                                var instName = candidate.Institute != null ? candidate.Institute.Name : ""; 
                                 <tr>
                                     <td>@candidate.Name</td>
                                     <td>@candidate.PrimaryCategory.Name</td>
-                                    <td>@candidate.Institute.Name</td>
+                                    <td>@instName</td>
                                     <td>@candidate.ExpectedSalary</td>
                                     <td>@candidate.TotalExperience</td>
                                     <td>

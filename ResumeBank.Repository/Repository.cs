@@ -29,6 +29,11 @@ namespace ResumeBank.Repository
 
         public void Update(T item)
         {
+            var local = _context.Set<T>().Local.FirstOrDefault(c => c.Id == item.Id);
+            if (local != null)
+            {
+                _context.Entry(local).State = EntityState.Detached;
+            }
             _context.Entry(item).State = EntityState.Modified;
         }
 
@@ -36,13 +41,13 @@ namespace ResumeBank.Repository
         {
             foreach (var item in items)
             {
-                _context.Entry(item).State = EntityState.Modified;
+                Update(item);
             }
         }
 
         public ICollection<T> GetAll()
         {
-            return _context.Set<T>().ToList();
+            return _context.Set<T>().Where(c => c.Status == 1).ToList();
         }
 
         public T GetById(int id)

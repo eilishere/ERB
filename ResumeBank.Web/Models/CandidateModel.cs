@@ -23,6 +23,10 @@ namespace ResumeBank.Web.Models
         private JobLevelManagementService _jobLevelManagementService;
         private SubjectManagementService _subjectManagementService;
 
+
+        public int SubCategoryId { get; set; }
+        public ICollection<Candidate> Candidates { get; set; }
+
         public ICollection<Category> PrimaryCategories { get; set; }
         public ICollection<Category> SubCategories { get; set; }
         public ICollection<EducationLevel> EducationLevels { get; set; }
@@ -46,13 +50,15 @@ namespace ResumeBank.Web.Models
             _jobLevelManagementService = new JobLevelManagementService();
             _subjectManagementService = new SubjectManagementService();
 
-            PrimaryCategories = _categoryManagementService.GetAllCategories();
-            SubCategories = PrimaryCategories;
+            PrimaryCategories = _categoryManagementService.GetAllCategories().Where(c => c.ParentId == null).ToList();
+            SubCategories = _categoryManagementService.GetAllCategories().Where(c => c.ParentId == PrimaryCategoryId).ToList();
             EducationLevels = _educationLevelManagementService.GetAllEducationLevels();
             Genders = _genderManagementService.GetAllGenders();
             Institutes = _instituteManagementService.GetAllInstitutes();
             JobLevels = _jobLevelManagementService.GetAllJobLevels();
             Subjects = _subjectManagementService.GetAllSubjects();
+
+            Candidates = _candidateManagementService.GetAllCandidates().ToList();
         }
 
         public CandidateModel(int? id) : this()
@@ -85,6 +91,8 @@ namespace ResumeBank.Web.Models
                 OriginalResume = existingCandidate.OriginalResume;
                 ModifiedResume = existingCandidate.ModifiedResume;
                 SubCategorySelectedIds = CandidateSubCategories.Select(c => c.SubCategoryId).ToList();
+
+                SubCategories = _categoryManagementService.GetAllCategories().Where(c => c.ParentId == PrimaryCategoryId).ToList();
 
             }
         }
@@ -222,6 +230,40 @@ namespace ResumeBank.Web.Models
                 }
             }
             return true;
+        }
+
+        public void SetAllCandidatesBySearch()
+        {
+            Candidates = _candidateManagementService.GetAllCandidates().ToList();
+            Candidates = !String.IsNullOrEmpty(Keywords) ? Candidates.Where(c =>
+            {
+                return !String.IsNullOrEmpty(c.Keywords) ? c.Keywords.ToLower().Contains(Keywords.ToLower()) : false;
+            }).ToList() : Candidates;
+            Candidates = PrimaryCategoryId != 0 && PrimaryCategoryId != null ? Candidates.Where(c => c.PrimaryCategoryId == PrimaryCategoryId).ToList() : Candidates;
+            Candidates = SubCategoryId != 0 && SubCategoryId != null ? Candidates.Where(c => c.CandidateSubCategories.Select(s => s.SubCategoryId).Contains(SubCategoryId)).ToList() : Candidates;
+            Candidates = EducationLevelId != 0 && EducationLevelId != null ? Candidates.Where(c => c.EducationLevelId == EducationLevelId).ToList() : Candidates;
+            Candidates = SubjectId != 0 && SubjectId != null ? Candidates.Where(c => c.SubjectId == SubjectId).ToList() : Candidates;
+            Candidates = InstituteId != 0 && InstituteId != null ? Candidates.Where(c => c.InstituteId == InstituteId).ToList() : Candidates;
+            Candidates = JobLevelId != 0 && JobLevelId != null ? Candidates.Where(c => c.JobLevelId == JobLevelId).ToList() : Candidates;
+            Candidates = !String.IsNullOrEmpty(Training) ? Candidates.Where(c =>
+            {
+                return !String.IsNullOrEmpty(c.Training) ? c.Training.ToLower().Contains(Training.ToLower()) : false;
+            }).ToList() : Candidates;
+            Candidates = TotalExperience != null && TotalExperience != 0 ? Candidates.Where(c => c.TotalExperience >= TotalExperience).ToList() : Candidates;
+            Candidates = CurrentSalary != null && CurrentSalary != 0 ? Candidates.Where(c => c.CurrentSalary >= CurrentSalary).ToList() : Candidates;
+            Candidates = ExpectedSalary != null && ExpectedSalary != 0 ? Candidates.Where(c => c.ExpectedSalary <= ExpectedSalary).ToList() : Candidates;
+
+            SubCategories = _categoryManagementService.GetAllCategories().Where(c => c.ParentId == PrimaryCategoryId).ToList();
+        }
+
+        public void SetAllCandidates()
+        {
+            Candidates = _candidateManagementService.GetAllCandidates().ToList();
+        }
+
+        public ICollection<Category> GetSubCategories(int id)
+        {
+            return _categoryManagementService.GetAllCategories().Where(c => c.ParentId == id).ToList();
         }
 
     }
