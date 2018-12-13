@@ -1,4 +1,5 @@
-﻿using ResumeBank.Web.Models;
+﻿using PagedList;
+using ResumeBank.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,29 +45,26 @@ namespace ResumeBank.Web.Controllers
                 if (candidateModel.Id != 0 && candidateModel.Id  != null)
                 {
                     candidateModel.UpdateCandidate();
+                    TempData["notifyMessage"] = "<script>$.notify('Update succesfully', 'success');</script>";
                     return RedirectToAction("Search");
                 }
                 else
                 {
                     candidateModel.AddCandidate();
+                    TempData["notifyMessage"] = "<script>$.notify('Add succesfully', 'success');</script>";
                     return RedirectToAction("AddCandidate");
                 }  
             }
 
+            TempData["notifyMessage"] = "<script>$.notify('Failed', 'error');</script>";
             return View(candidateModel);
         }
 
         [HttpGet]
-        public ActionResult Search()
-        {
-            return View(_candidateModel);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Search(CandidateModel candidateModel)
         {
-            candidateModel.SetAllCandidatesBySearch();
+            candidateModel = candidateModel != null ? candidateModel : new CandidateModel();
+            candidateModel.SetAllCandidatesBySearchWithPaging();
             return View(candidateModel);
         }
 

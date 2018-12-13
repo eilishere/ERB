@@ -16,7 +16,11 @@ var DeleteCandidate = function() {
         success: function(result) {
 
             $("#confirmDeleteModal").modal("hide");
-            window.location.reload(true);
+            $.notify('Delete succesfully', 'success');
+            setTimeout(function () { window.location.reload(true); }, 500);
+        },
+        error: function (result) {
+            $.notify('Oops, something bad happened !!!', 'error');
         }
 
     });
@@ -71,7 +75,7 @@ $("#primaryCategoryId").change(function () {
             }
         },
         error: function (result) {
-            alert('Oops, something bad happened !!!');
+            $.notify('Oops, something bad happened !!!', 'error');
         }
 
     });
@@ -131,7 +135,7 @@ $("#primaryCategorySearchId").change(function () {
             }
         },
         error: function (result) {
-            alert('Oops, something bad happened !!!');
+            $.notify('Oops, something bad happened !!!', 'error');
         }
 
     });

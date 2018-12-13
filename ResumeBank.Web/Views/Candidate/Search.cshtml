@@ -1,187 +1,210 @@
 ﻿@model ResumeBank.Web.Models.CandidateModel
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-    @{
-        ViewBag.Title = "Search";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Candidate Search
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Candidate</a></li>
+        <li class="active">Search</li>
+    </ol>
+</section>
 
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            Candidate Search
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Candidate</a></li>
-            <li class="active">Search</li>
-        </ol>
-    </section>
-    <!-- Main content -->
-    <section class="content">
-        <div class="col-sm-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Search Criteria</h3>
-                </div>
-                @using (Html.BeginForm("Search", "Candidate", FormMethod.Post))
-                      {
-                          @Html.AntiForgeryToken()
-                          <div class="form-horizontal">
-                              <div class="box-body">
-                                  <div class="form-group col-sm-3">
-                                      <div class="col-sm-12">                                       
-                                          @Html.TextBoxFor(c => c.Keywords, new { @class = "form-control", @placeholder="Keyword" })
-                                      </div>
-                                  </div>
-                                  <div class="form-group col-sm-3">
-                                      <div class="col-sm-12">
-                                          @Html.DropDownListFor(c => c.PrimaryCategoryId, new SelectList(Model.PrimaryCategories, "Id", "Name"), "---Select Category---", new { @class = "form-control", @id = "primaryCategorySearchId" })
-                                      </div>
-                                  </div>
-                                  <div class="form-group col-sm-3">
-                                      <div class="col-sm-12">
-                                          @Html.DropDownListFor(c => c.SubCategoryId, new SelectList(Model.SubCategories, "Id", "Name"), "---Select Sub-Category---", new { @class = "form-control", @id = "subCategorySearchId", @disabled = true })
-                                      </div>
-                                  </div>
-                                  <div class="form-group col-sm-3">
-                                      <div class="col-sm-12">
-                                          @Html.DropDownListFor(c => c.EducationLevelId, new SelectList(Model.EducationLevels, "Id", "Name"), "---Select Education Level---", new { @class = "form-control" })
-                                      </div>
-                                  </div>
-                                  <div class="form-group col-sm-3">
-                                      <div class="col-sm-12">
-                                          @Html.DropDownListFor(c => c.SubjectId, new SelectList(Model.Subjects, "Id", "Name"), "---Select Subject---", new { @class = "form-control" })
-                                      </div>
-                                  </div>
-                                  <div class="form-group col-sm-3">
-                                      <div class="col-sm-12">
-                                          @Html.DropDownListFor(c => c.InstituteId, new SelectList(Model.Institutes, "Id", "Name"), "---Select Institute---", new { @class = "form-control" })
-                                      </div>
-                                  </div>
-                                  <div class="form-group col-sm-3">
-                                      <div class="col-sm-12">
-                                          @Html.DropDownListFor(c => c.JobLevelId, new SelectList(Model.JobLevels, "Id", "Name"), "---Select Job Level---", new { @class = "form-control" })
-                                      </div>
-                                  </div>
-                                  <div class="form-group col-sm-3">
-                                      <div class="col-sm-12">                                        
-                                          @Html.TextBoxFor(c => c.Training, new { @class = "form-control", @placeholder = "Training" })
-                                      </div>
-                                  </div>
-                                  <div class="form-group col-sm-3">
-                                      <div class="col-sm-12">
-                                          @Html.TextBoxFor(c => c.TotalExperience, new { @class = "form-control", @placeholder = "Total Experience" })
-                                      </div>
-                                  </div>
-                                  <div class="form-group col-sm-3">
-                                      <div class="col-sm-12">
-                                          @Html.TextBoxFor(c => c.CurrentSalary, new { @class = "form-control", @placeholder = "Current Salary" })
-                                      </div>
-                                  </div>
-                                  <div class="form-group col-sm-3">
-                                      <div class="col-sm-12">
-                                          @Html.TextBoxFor(c => c.ExpectedSalary, new { @class = "form-control", @placeholder = "Expected Salary" })
-                                      </div>
-                                  </div>
-                                  <div class="form-group col-sm-3">
-                                      <div class="col-sm-12">
-                                          <button type="submit" class="btn btn-info btn-block">Search</button>
-                                      </div>
-                                  </div>
-                              </div>
-                              <!-- /.box-body -->
-                              <div class="box-footer">
-
-                              </div>
-                              <!-- /.box-footer -->
-                          </div>
-                      }
-                <!-- /.box-body -->
+<!-- Main content -->
+<section class="content">
+    <div class="col-sm-12">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Search Criteria</h3>
             </div>
+            @using (Html.BeginForm("Search", "Candidate", FormMethod.Get))
+            {
+                <div class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group col-sm-3">
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(c => c.Keywords, new { @class = "form-control", @placeholder = "Keyword" })
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <div class="col-sm-12">
+                                @Html.DropDownListFor(c => c.PrimaryCategoryId, new SelectList(Model.PrimaryCategories, "Id", "Name"), "---Select Category---", new { @class = "form-control", @id = "primaryCategorySearchId" })
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <div class="col-sm-12">
+                                @Html.DropDownListFor(c => c.SubCategoryId, new SelectList(Model.SubCategories, "Id", "Name"), "---Select Sub-Category---", new { @class = "form-control", @id = "subCategorySearchId", @disabled = true })
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <div class="col-sm-12">
+                                @Html.DropDownListFor(c => c.EducationLevelId, new SelectList(Model.EducationLevels, "Id", "Name"), "---Select Education Level---", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <div class="col-sm-12">
+                                @Html.DropDownListFor(c => c.SubjectId, new SelectList(Model.Subjects, "Id", "Name"), "---Select Subject---", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <div class="col-sm-12">
+                                @Html.DropDownListFor(c => c.InstituteId, new SelectList(Model.Institutes, "Id", "Name"), "---Select Institute---", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <div class="col-sm-12">
+                                @Html.DropDownListFor(c => c.JobLevelId, new SelectList(Model.JobLevels, "Id", "Name"), "---Select Job Level---", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(c => c.Training, new { @class = "form-control", @placeholder = "Training" })
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(c => c.TotalExperience, new { @class = "form-control", @placeholder = "Total Experience" })
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(c => c.CurrentSalary, new { @class = "form-control", @placeholder = "Current Salary" })
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(c => c.ExpectedSalary, new { @class = "form-control", @placeholder = "Expected Salary" })
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-info btn-block">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+
+                    </div>
+                    <!-- /.box-footer -->
+                </div>
+            }
+            <!-- /.box-body -->
         </div>
-
-        <div class="col-sm-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Results</h3>
-                </div>
-                <div class="box-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>Institution</th>
-                                <th>Expected Salary</th>
-                                <th>Experience (yr)</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var candidate in Model.Candidates)
-                            {   
-                                var instName = candidate.Institute != null ? candidate.Institute.Name : ""; 
-                                <tr>
-                                    <td>@candidate.Name</td>
-                                    <td>@candidate.PrimaryCategory.Name</td>
-                                    <td>@instName</td>
-                                    <td>@candidate.ExpectedSalary</td>
-                                    <td>@candidate.TotalExperience</td>
-                                    <td>
-                                        <a class="btn btn-success btn-sm"
-                                           href='@Url.Action("AddCandidate", "Candidate", new {id = candidate.Id})'>
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <a class="btn btn-danger btn-sm"
-                                           href='' onclick="ConfirmDeleteCandidate(@candidate.Id)" data-toggle="modal">
-                                            <i class="fa fa-remove"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-
-                </div>
-                <!-- /.box-footer -->
-                <!-- /.box-body -->
-            </div>
-        </div>
-
-        <!-- /.box -->
-    </section>
-<!-- /.content -->
-    
-    
-
-<!-- Start Delete Modal -->
-    <div class="modal fade" id="confirmDeleteModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title text-center text-danger">Confirmation Message</h4>
-                </div>
-                <div class="modal-body text-center">
-                    <p>Are you sure want to delete this Candidate ?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="DeleteCandidate()">Confirm</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
     </div>
 
-    <input type="hidden" id="hiddenCandidateId" />
+    <div class="col-sm-12">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Total @Model.CandidatesPagedList.TotalItemCount @(Model.CandidatesPagedList.TotalItemCount > 1 ? "Candidates" : "Candidate")</h3>
+            </div>
+            <div class="box-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Institution</th>
+                            <th>Expected Salary</th>
+                            <th>Experience (yr)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var candidate in Model.CandidatesPagedList)
+                        {
+                            var instName = candidate.Institute != null ? candidate.Institute.Name : "";
+                            <tr>
+                                <td>@candidate.Name</td>
+                                <td>@candidate.PrimaryCategory.Name</td>
+                                <td>@instName</td>
+                                <td>@candidate.ExpectedSalary</td>
+                                <td>@candidate.TotalExperience</td>
+                                <td>
+                                    <a class="btn btn-success btn-sm"
+                                       href='@Url.Action("AddCandidate", "Candidate", new {id = candidate.Id})'>
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm"
+                                       href='' onclick="ConfirmDeleteCandidate(@candidate.Id)" data-toggle="modal">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <div class="pull-left">
+                    Page @(Model.CandidatesPagedList.PageCount < Model.CandidatesPagedList.PageNumber ? 0 : Model.CandidatesPagedList.PageNumber)
+                    of @Model.CandidatesPagedList.PageCount
+                </div>
+                <div class="pull-right">
+                    @Html.PagedListPager(Model.CandidatesPagedList, page =>
+                        {
+                            Model.PageNumber = page;
+                            return Url.Action("Search", "Candidate", new
+                            {
+                                Model.Keywords,
+                                Model.PrimaryCategoryId,
+                                Model.SubCategoryId,
+                                Model.EducationLevelId,
+                                Model.SubjectId,
+                                Model.InstituteId,
+                                Model.JobLevelId,
+                                Model.Training,
+                                Model.TotalExperience,
+                                Model.CurrentSalary,
+                                Model.ExpectedSalary,
+                                Model.PageNumber
+
+                            });
+                        })
+                </div>
+            </div>
+            <!-- /.box-footer -->
+            <!-- /.box-body -->
+        </div>
+    </div>
+
+    <!-- /.box -->
+</section>
+<!-- /.content -->
+<!-- Start Delete Modal -->
+<div class="modal fade" id="confirmDeleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title text-center text-danger">Confirmation Message</h4>
+            </div>
+            <div class="modal-body text-center">
+                <p>Are you sure want to delete this Candidate ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="DeleteCandidate()">Confirm</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<input type="hidden" id="hiddenCandidateId" />
 
 @section scripts{
-        <script src="~/Scripts/Project/candidate.js"></script>
+    <script src="~/Scripts/Project/candidate.js"></script>
 }
