@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Net;
+using PagedList;
 using ResumeBank.Entities;
 using ResumeBank.Services;
 using System;
@@ -26,6 +27,8 @@ namespace ResumeBank.Web.Models
 
         public int SubCategoryId { get; set; }
         public ICollection<Candidate> Candidates { get; set; }
+        public IPagedList<Candidate> CandidatesPagedList { get; set; }
+        public int? PageNumber { get; set; }
 
         public ICollection<Category> PrimaryCategories { get; set; }
         public ICollection<Category> SubCategories { get; set; }
@@ -200,7 +203,9 @@ namespace ResumeBank.Web.Models
 
                     if (allowedExtensions.Contains(fileExtensions))
                     {
-                        fileName = name.Replace(" ", "_") + "_" + Guid.NewGuid().ToString().Replace("-", "");
+                        DateTime date = DateTime.Now;
+                        string dateStr = date.Year + "_" + date.Month + "_" + date.Day + "_" + date.Hour + "_" + date.Minute + "_" + date.Second;
+                        fileName = name.Replace(" ", "_") + "_" + dateStr + "_" + Guid.NewGuid().ToString().Replace("-", "");
                         url = "~/Uploads/Resume//" + fileName + fileExtensions;
                         file.SaveAs(HttpContext.Current.Server.MapPath(url));
                     }
@@ -254,6 +259,15 @@ namespace ResumeBank.Web.Models
             Candidates = ExpectedSalary != null && ExpectedSalary != 0 ? Candidates.Where(c => c.ExpectedSalary <= ExpectedSalary).ToList() : Candidates;
 
             SubCategories = _categoryManagementService.GetAllCategories().Where(c => c.ParentId == PrimaryCategoryId).ToList();
+        }
+
+        public void SetAllCandidatesBySearchWithPaging()
+        {
+            SetAllCandidatesBySearch();
+
+            int pageSize = 20;
+            int pageNumber = (PageNumber ?? 1);
+            CandidatesPagedList = Candidates.ToPagedList(pageNumber, pageSize);
         }
 
         public void SetAllCandidates()

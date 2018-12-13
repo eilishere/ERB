@@ -75,6 +75,14 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -231,7 +239,9 @@
     <Content Include="Content\img\credit\paypal2.png" />
     <Content Include="Content\img\credit\visa.png" />
     <Content Include="Content\img\default-50x50.gif" />
+    <Content Include="Content\img\doc-icon.png" />
     <Content Include="Content\img\icons.png" />
+    <Content Include="Content\img\pdf-icon.png" />
     <Content Include="Content\img\photo1.png" />
     <Content Include="Content\img\photo2.png" />
     <Content Include="Content\img\photo3.jpg" />
@@ -244,6 +254,7 @@
     <Content Include="Content\img\user6-128x128.jpg" />
     <Content Include="Content\img\user7-128x128.jpg" />
     <Content Include="Content\img\user8-128x128.jpg" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\select2.min.css" />
     <Content Include="Content\skins\skin-black-light.css" />
     <Content Include="Content\skins\skin-black-light.min.css" />
@@ -1964,6 +1975,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\notify.min.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
