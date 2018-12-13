@@ -27,7 +27,7 @@ namespace ResumeBank.Services
 
         public IEnumerable<Candidate> GetAllCandidates()
         {
-            return _candidateUnitOfWork.CandidateRepository.GetAll().Where(c => c.Status == 1);
+            return _candidateUnitOfWork.CandidateRepository.GetAll();
         }
 
         public Candidate GetCandidateById(int id)

@@ -123,6 +123,10 @@
     <Compile Include="Migrations\201812091027028_CandidateRequiredProperty.Designer.cs">
       <DependentUpon>201812091027028_CandidateRequiredProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812110834252_CandidateRequiredRemove.cs" />
+    <Compile Include="Migrations\201812110834252_CandidateRequiredRemove.Designer.cs">
+      <DependentUpon>201812110834252_CandidateRequiredRemove.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RBDbContext.cs" />
@@ -182,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812091027028_CandidateRequiredProperty.resx">
       <DependentUpon>201812091027028_CandidateRequiredProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812110834252_CandidateRequiredRemove.resx">
+      <DependentUpon>201812110834252_CandidateRequiredRemove.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

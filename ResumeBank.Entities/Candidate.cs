@@ -18,7 +18,7 @@ namespace ResumeBank.Entities
         public string Address { get; set; }
         [Display(Name = "Date Of Birth")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? DateOfBirth { get; set; }
         [Display(Name = "Current Salary")]
         public double? CurrentSalary { get; set; }
@@ -42,22 +42,18 @@ namespace ResumeBank.Entities
         [Display(Name = "Sub-Category")]
         public virtual ICollection<CandidateSubCategory> CandidateSubCategories { get; set; }
 
-        [Required]
         [Display(Name = "Education Level")]
         public int? EducationLevelId { get; set; }
         public virtual EducationLevel EducationLevel { get; set; }
 
-        [Required]
         [Display(Name = "Subject")]
         public int? SubjectId { get; set; }
         public virtual Subject Subject { get; set; }
 
-        [Required]
         [Display(Name = "Institute")]
         public int? InstituteId { get; set; }
         public virtual Institute Institute { get; set; }
 
-        [Required]
         [Display(Name = "Job Level")]
         public int? JobLevelId { get; set; }
         public virtual JobLevel JobLevel { get; set; }

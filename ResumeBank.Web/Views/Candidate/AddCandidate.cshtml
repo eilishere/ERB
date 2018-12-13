@@ -70,7 +70,7 @@
                     <div class="form-group">
                         @Html.LabelFor(c => c.DateOfBirth, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-6">
-                            @Html.TextBoxFor(c => c.DateOfBirth,"{0:dd/MM/yyyy}", new { @class = "form-control", @placeholder = "dd/mm/yyyy" })
+                            @Html.TextBoxFor(c => c.DateOfBirth, "{0:MM/dd/yyyy}", new { @class = "form-control datemask", @placeholder = "mm/dd/yyyy" })
                             @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -91,14 +91,14 @@
                     <div class="form-group">
                         @Html.LabelFor(c => c.PrimaryCategoryId, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-6">
-                            @Html.DropDownListFor(c => c.PrimaryCategoryId, new SelectList(Model.PrimaryCategories, "Id", "Name"), "---Select---", new { @class = "form-control" })
+                            @Html.DropDownListFor(c => c.PrimaryCategoryId, new SelectList(Model.PrimaryCategories, "Id", "Name"), "---Select---", new { @class = "form-control", @id="primaryCategoryId" })
                             @Html.ValidationMessageFor(model => model.PrimaryCategoryId, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(c => c.SubCategorySelectedIds, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-6">
-                            @Html.ListBoxFor(c => c.SubCategorySelectedIds, new MultiSelectList(Model.PrimaryCategories, "Id", "Name", @Model.SubCategorySelectedIds), new { @class = "form-control select2" })
+                            @Html.ListBoxFor(c => c.SubCategorySelectedIds, new MultiSelectList(Model.SubCategories, "Id", "Name", @Model.SubCategorySelectedIds), new { @class = "form-control select2", @id = "subCategoryId", @disabled = true })
                             @Html.ValidationMessageFor(model => model.SubCategorySelectedIds, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -187,4 +187,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/Project/candidate.js"></script>
 }

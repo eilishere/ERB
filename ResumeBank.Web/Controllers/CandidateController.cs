@@ -56,9 +56,18 @@ namespace ResumeBank.Web.Controllers
             return View(candidateModel);
         }
 
+        [HttpGet]
         public ActionResult Search()
         {
-            return View(_candidateModel.GetAllCandidates());
+            return View(_candidateModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Search(CandidateModel candidateModel)
+        {
+            candidateModel.SetAllCandidatesBySearch();
+            return View(candidateModel);
         }
 
         public ActionResult DeleteCandidate(int id)
@@ -67,5 +76,12 @@ namespace ResumeBank.Web.Controllers
 
             return Json(isDeleted, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult GetSubCategories(int id)
+        {
+            var subCategory = _candidateModel.GetSubCategories(id);
+            return Json(subCategory, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
