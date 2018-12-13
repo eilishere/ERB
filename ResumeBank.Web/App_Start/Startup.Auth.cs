@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
@@ -25,7 +26,7 @@ namespace ResumeBank.Web
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Account/Login"),
+                LoginPath = new PathString("/Home/Login"),
                 Provider = new CookieAuthenticationProvider
                 {
                     // Enables the application to validate the security stamp when the user logs in.
@@ -63,6 +64,38 @@ namespace ResumeBank.Web
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+        }
+
+        public void CreateInitialRolesAndAdminUser()
+        {
+            UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+
+            if (!roleManager.RoleExists("Admin"))
+            {
+                var adminRoleCreateResult = roleManager.Create(new IdentityRole("Admin"));
+
+                if (adminRoleCreateResult.Succeeded)
+                {
+
+                    if (userManager.FindByName("admin") == null)
+                    {
+                        var adminUser = new ApplicationUser();
+                        adminUser.Email = "admin@resumebank.com";
+                        adminUser.UserName = "admin";
+                        adminUser.Id = Guid.NewGuid().ToString();
+
+                        var adminCreateResult = userManager.Create(adminUser, "admin@123");
+                        if (adminCreateResult.Succeeded)
+                        {
+                            userManager.AddToRole(adminUser.Id, "Admin");
+                        }
+                    }
+                }
+            }
+
+            if (!roleManager.RoleExists("Manager"))
+                roleManager.Create(new IdentityRole("Manager"));
         }
     }
 }

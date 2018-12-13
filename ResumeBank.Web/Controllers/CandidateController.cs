@@ -8,6 +8,7 @@ using System.IO;
 
 namespace ResumeBank.Web.Controllers
 {
+    [Authorize]
     public class CandidateController : Controller
     {
         private CandidateModel _candidateModel;
