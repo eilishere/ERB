@@ -16,8 +16,7 @@ var DeleteCandidate = function() {
         success: function(result) {
 
             $("#confirmDeleteModal").modal("hide");
-            $.notify('Delete succesfully', 'success');
-            setTimeout(function () { window.location.reload(true); }, 500);
+            window.location.reload(true);
         },
         error: function (result) {
             $.notify('Oops, something bad happened !!!', 'error');
@@ -143,3 +142,38 @@ $("#primaryCategorySearchId").change(function () {
 });
 
 //..... End Search Candidate Page.....
+
+
+//..... Start File Check .....//
+$(document).ready(function () {
+    $("#originalResumeFile").change(function () {
+        if (this.files && this.files[0]) {
+            if (!this.files[0].name.match(/\.(pdf|doc|docx|ppt|pptx)$/)) {
+                alert("This file is not supported");
+                $(this).val(null);
+                return;
+            }
+            if (!(this.files[0].size > (0))) {
+                alert("There is no data in the file");
+                $(this).val(null);
+                return;
+            }
+        }
+    });
+
+    $("#modifiedResumeFile").change(function () {
+        if (this.files && this.files[0]) {
+            if (!this.files[0].name.match(/\.(pdf|doc|docx|ppt|pptx)$/)) {
+                alert("This file is not supported");
+                $(this).val(null);
+                return;
+            }
+            if (!(this.files[0].size > (0))) {
+                alert("There is no data in the file");
+                $(this).val(null);
+                return;
+            }
+        }
+    });
+});
+//..... End File Check .....//
