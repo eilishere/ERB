@@ -197,7 +197,7 @@ namespace ResumeBank.Web.Models
             {
                 if (file != null && file.ContentLength > 0)
                 {
-                    var allowedExtensions = new[] { ".pdf", ".doc", ".docx" };
+                    var allowedExtensions = new[] { ".pdf", ".doc", ".docx", ".ppt", ".pptx" };
                     var fileName = Path.GetFileNameWithoutExtension(file.FileName);
                     var fileExtensions = Path.GetExtension(file.FileName);
 

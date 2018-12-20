@@ -46,13 +46,13 @@ namespace ResumeBank.Web.Controllers
                 if (candidateModel.Id != 0 && candidateModel.Id  != null)
                 {
                     candidateModel.UpdateCandidate();
-                    TempData["notifyMessage"] = "<script>$.notify('Update succesfully', 'success');</script>";
+                    TempData["notifyMessage"] = "<script>$.notify('Succesfully Updated', 'success');</script>";
                     return RedirectToAction("Search");
                 }
                 else
                 {
                     candidateModel.AddCandidate();
-                    TempData["notifyMessage"] = "<script>$.notify('Add succesfully', 'success');</script>";
+                    TempData["notifyMessage"] = "<script>$.notify('Succesfully Added', 'success');</script>";
                     return RedirectToAction("AddCandidate");
                 }  
             }
@@ -72,7 +72,8 @@ namespace ResumeBank.Web.Controllers
         public ActionResult DeleteCandidate(int id)
         {
             var isDeleted = _candidateModel.DeleteCandidateById(id);
-
+            if (isDeleted)
+                TempData["notifyMessage"] = "<script>$.notify('Succesfully Deleted', 'success');</script>";
             return Json(isDeleted, JsonRequestBehavior.AllowGet);
         }
 

@@ -167,7 +167,9 @@
                                 @if (Model.OriginalResume != null)
                                 {
                                     <a href="@Url.Content(Model.OriginalResume.Url)" target="_blank">
-                                        <img src="@(Model.OriginalResume.Url.EndsWith(".pdf")?"/Content/img/pdf-icon.png":"/Content/img/doc-icon.png")" width="50px" height="50px" />
+                                        <img src="@(Model.OriginalResume.Url.EndsWith(".pdf") ? "/Content/img/pdf-icon.png" :
+                                            Model.OriginalResume.Url.EndsWith(".doc") || Model.OriginalResume.Url.EndsWith(".docx") ? "/Content/img/doc-icon.png" :
+                                            "/Content/img/ppt-icon.png")" width="50px" height="50px" />
                                     </a>
                                 }
                                 else
@@ -183,7 +185,9 @@
                                 @if (Model.ModifiedResume != null)
                                 {
                                     <a href="@Url.Content(Model.ModifiedResume.Url)" target="_blank">
-                                        <img src="@(Model.ModifiedResume.Url.EndsWith(".pdf") ? "/Content/img/pdf-icon.png" : "/Content/img/doc-icon.png")" width="50px" height="50px" />
+                                        <img src="@(Model.ModifiedResume.Url.EndsWith(".pdf") ? "/Content/img/pdf-icon.png" :
+                                            Model.ModifiedResume.Url.EndsWith(".doc") || Model.ModifiedResume.Url.EndsWith(".docx") ? "/Content/img/doc-icon.png" :
+                                            "/Content/img/ppt-icon.png")" width="50px" height="50px" />
                                     </a>
                                 }
                                 else
