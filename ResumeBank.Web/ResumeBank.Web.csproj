@@ -203,6 +203,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CandidateController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -210,6 +211,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CandidateModel.cs" />
+    <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1982,6 +1984,7 @@
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\Project\candidate.js" />
+    <Content Include="Scripts\Project\category.js" />
     <Content Include="Scripts\select2.full.min.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
@@ -2033,6 +2036,8 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Candidate\Search.cshtml" />
     <Content Include="Views\Candidate\AddCandidate.cshtml" />
+    <Content Include="Views\Category\Categories.cshtml" />
+    <Content Include="Views\Category\AddCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

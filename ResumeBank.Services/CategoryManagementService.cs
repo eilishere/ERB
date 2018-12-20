@@ -21,12 +21,17 @@ namespace ResumeBank.Services
 
         public ICollection<Category> GetAllCategories()
         {
-            return _categoryUnitOfWork.CategoryRepository.GetAll();
+            return _categoryUnitOfWork.CategoryRepository.GetAll().OrderBy(c => c.Name).ToList();
         }
 
         public IEnumerable<Category> GetAllSubCategories(int id)
         {
-            return _categoryUnitOfWork.CategoryRepository.GetAllSubCategories(id);
+            return _categoryUnitOfWork.CategoryRepository.GetAllSubCategories(id).OrderBy(c => c.Name).ToList();
+        }
+
+        public Category GetCategoryById(int id)
+        {
+            return _categoryUnitOfWork.CategoryRepository.GetById(id);
         }
 
         public bool AddCategory(Category category)
@@ -37,7 +42,7 @@ namespace ResumeBank.Services
 
                 newCategory.Id = category.Id;
                 newCategory.Name = category.Name;
-                newCategory.ParentCategory = category.ParentCategory;
+                newCategory.ParentId = category.ParentId;
                 newCategory.UpdatedAt = DateTime.Now;
 
                 _categoryUnitOfWork.CategoryRepository.Add(newCategory);
@@ -52,6 +57,49 @@ namespace ResumeBank.Services
                 return false;
             }
             
+        }
+
+        public bool UpdateCategory(Category category)
+        {
+            try
+            {
+                var updateCategory = new Category()
+                {
+
+                    Id = category.Id,
+                    Name = category.Name,
+                    ParentId = category.ParentId,
+                    UpdatedAt = DateTime.Now
+                };
+
+                _categoryUnitOfWork.CategoryRepository.Update(updateCategory);
+                _categoryUnitOfWork.Save();
+
+                return true;
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        public bool DeleteCategoryById(int id)
+        {
+            try
+            {
+                _categoryUnitOfWork.CategoryRepository.DeleteById(id);
+                _categoryUnitOfWork.Save();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+
+            return true;
         }
     }
 }

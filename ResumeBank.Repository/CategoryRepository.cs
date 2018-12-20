@@ -19,7 +19,7 @@ namespace ResumeBank.Repository
 
         public IEnumerable<Category> GetAllSubCategories(int id)
         {
-            return _context.Categories.Where(c => c.Id == id).ToList();
+            return _context.Categories.Where(c => c.Status == 1 && c.ParentId == id).ToList();
         }
     }
 }
